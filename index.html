@@ -8,47 +8,77 @@
         canvas { display: block; z-index: 1; }
         
         /* --- ปุ่มกล่องของขวัญกลางจอ --- */
+        /* --- กล่องของขวัญสไตล์ไอคอน --- */
         #gift-btn {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
-            background-color: #ff4d6d;
-            border: 8px solid #fff;
-            border-radius: 20px;
+            width: 180px;
+            height: 160px;
+            background-color: #ff4d6d; /* สีกล่อง */
+            border-radius: 10px;
             cursor: pointer;
             z-index: 100;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            box-shadow: 0 0 50px rgba(255, 77, 109, 0.8);
-            /* Animation ขยายและหดต่อเนื่อง */
-            animation: pulse 1.5s infinite ease-in-out;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            animation: bounce 1.2s infinite ease-in-out;
             transition: 0.3s;
         }
 
-        /* โบว์บนกล่องของขวัญ */
+        /* ฝากล่อง */
         #gift-btn::before {
-            content: "🎀";
-            font-size: 80px;
+            content: "";
             position: absolute;
-            top: -60px;
+            top: -20px;
+            width: 200px;
+            height: 40px;
+            background-color: #ff758f;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
         }
 
-        #gift-btn span {
+        /* ริบบิ้นแนวตั้ง */
+        #gift-btn::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 100%;
+            background-color: #ffffff; /* สีริบบิ้น */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* โบว์ข้างบน */
+        #bow {
+            position: absolute;
+            top: -70px;
+            font-size: 100px;
+            z-index: 101;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+        }
+
+        #click-text {
+            position: absolute;
+            bottom: -60px;
+            width: 250px;
             color: white;
             font-size: 24px;
             font-weight: bold;
             text-align: center;
+            text-shadow: 0 0 10px #ff4d6d;
         }
 
-        /* Hover แล้วสั่น */
+        /* แอนิเมชั่นเด้งดึ๋ง */
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1) translateY(-10px); }
+        }
+
         #gift-btn:hover {
-            background-color: #ff758f;
-            animation: shake 0.5s infinite;
+            filter: brightness(1.1);
         }
 
         @keyframes pulse {
@@ -87,8 +117,8 @@
     <div id="text-layer"><div id="quote-text"></div></div>
     
     <div id="gift-btn" onclick="startStory()">
-        <span>เปิดของขวัญ</span>
-        <span>เพื่อเธอ ❤️</span>
+        <div id="bow">🎀</div>
+        <div id="click-text">แตะเพื่อเปิดของขวัญ ❤️</div>
     </div>
 
     <canvas id="canvas"></canvas>
