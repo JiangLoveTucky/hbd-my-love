@@ -9,14 +9,15 @@
         
         /* --- ปุ่มกล่องของขวัญกลางจอ --- */
         /* --- กล่องของขวัญสไตล์ไอคอน --- */
+        /* --- กล่องของขวัญสไตล์ไอคอน --- */
         #gift-btn {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 180px;
-            height: 160px;
-            background-color: #ff4d6d; /* สีกล่อง */
+            width: 200px;
+            height: 180px;
+            background-color: #ff4d6d;
             border-radius: 10px;
             cursor: pointer;
             z-index: 100;
@@ -25,56 +26,56 @@
             align-items: center;
             box-shadow: 0 15px 40px rgba(0,0,0,0.5);
             animation: bounce 1.2s infinite ease-in-out;
-            transition: 0.3s;
         }
 
         /* ฝากล่อง */
-        #gift-btn::before {
-            content: "";
+        .gift-lid {
             position: absolute;
             top: -20px;
-            width: 200px;
-            height: 40px;
+            width: 220px;
+            height: 45px;
             background-color: #ff758f;
             border-radius: 5px;
             box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            z-index: 2;
         }
 
         /* ริบบิ้นแนวตั้ง */
-        #gift-btn::after {
-            content: "";
+        .ribbon-v {
             position: absolute;
             width: 40px;
             height: 100%;
-            background-color: #FF0000; /* สีริบบิ้น */
+            background-color: #ffffff;
             left: 50%;
             transform: translateX(-50%);
+            z-index: 1;
         }
 
         /* โบว์ข้างบน */
         #bow {
             position: absolute;
-            top: -70px;
-            font-size: 100px;
-            z-index: 101;
+            top: -85px;
+            font-size: 110px;
+            z-index: 3;
             filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
         }
 
+        /* ข้อความบนกล่อง - ปรับให้ลอยอยู่บนสุด */
         #click-text {
-            position: absolute;
-            bottom: -60px;
-            width: 250px;
+            position: relative; /* เปลี่ยนเป็น relative เพื่อให้ z-index ทำงาน */
+            z-index: 10; 
             color: white;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
             text-align: center;
-            text-shadow: 0 0 10px #ff4d6d;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            pointer-events: none;
+            width: 100%;
         }
 
-        /* แอนิเมชั่นเด้งดึ๋ง */
         @keyframes bounce {
             0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.1) translateY(-10px); }
+            50% { transform: translate(-50%, -50%) scale(1.08) translateY(-10px); }
         }
 
         #gift-btn:hover {
@@ -118,7 +119,7 @@
     
     <div id="gift-btn" onclick="startStory()">
         <div id="bow">🎀</div>
-        <div id="click-text"><br>ของขวัญให้ตั๊กกี้<br>❤️<br>จากเจียง</div>
+        <div class="ribbon-v"></div> <div class="gift-lid"></div> <div id="click-text">แตะเพื่อเปิดของขวัญ ❤️</div>
     </div>
 
     <canvas id="canvas"></canvas>
